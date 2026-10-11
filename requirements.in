@@ -1,0 +1,7 @@
+# Runtime foundation (provider SDKs will be added when adapters are built).
+fastapi
+uvicorn
+keyring
+httpx
+# Development verification
+pytest

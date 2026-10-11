@@ -1,0 +1,47 @@
+# Non-secret Stage 0 configuration, loaded and validated by the setup CLI.
+config_version = 1
+
+[server]
+host = "127.0.0.1"
+port = 8765
+execution_context = "logged_in_user"
+
+[storage]
+# The loader expands ~ and requires this fixed private internal path; any other value is rejected.
+database_path = "~/Library/Application Support/BakBeat AI Stack/data/ai-stack.sqlite3"
+# Placeholder locations relative to the project directory; the core application does not read these two keys.
+workspace_path = "workspace"
+backup_path = "backups"
+
+[credentials]
+backend = "macos_keychain"
+service = "com.bakbeat.ai-stack"
+
+[providers.openai]
+keychain_account = "openai"
+
+[providers.anthropic]
+keychain_account = "anthropic"
+
+# Worker profiles are configuration identities, not model or role names.
+# Explicit IDs verified with each provider; resolved IDs are recorded per call.
+[models.openai_worker]
+provider = "openai"
+model_id = "gpt-5.6-sol"
+
+[models.anthropic_worker]
+provider = "anthropic"
+model_id = "claude-fable-5-1"
+
+[roles.primary]
+allowed_profiles = ["openai_worker", "anthropic_worker"]
+
+[selection]
+mode = "manual"
+choices = ["openai", "anthropic", "both"]
+
+[features]
+router = false
+cross_review = false
+tools = false
+lan_access = false

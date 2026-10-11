@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="bakbeat-token" content="__TOKEN__"><title>BakBeat AI Stack</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body><main>
+<header><span class="eyebrow">BAKBEAT STUDIO · LOCAL WORKSPACE</span><span class="badge">Stage 1 · Preview</span></header>
+<h1>Two perspectives.<br>One place to work.</h1>
+<p class="intro">Keep your work in projects. Choose exactly what each model remembers.</p>
+<section class="composer workspace" aria-label="Projects and conversations">
+<label for="project">Project</label><select id="project"><option value="">Quick prompt / recent requests</option></select>
+<details><summary>Create a project</summary><form id="new-project"><label for="project-name">Project name</label><input id="project-name" maxlength="120" required><button>Create project</button></form></details>
+<div id="project-work" hidden>
+<label for="conversation">Conversation</label><select id="conversation"></select>
+<form id="new-conversation"><label for="conversation-title">New conversation title</label><input id="conversation-title" maxlength="120" required><button>Create conversation</button></form>
+<details><summary>Project notes · stored on this Mac</summary><form id="notes-form"><label for="notes">Notes for this project</label><textarea id="notes" rows="4" maxlength="8000"></textarea><button>Save notes</button></form><p class="hint">Saving notes does not send them to a provider. Include them explicitly below when needed.</p></details>
+</div></section>
+<section class="composer"><form id="chat">
+<label for="selection">Who would you like to ask?</label>
+<select id="selection"><option value="openai">OpenAI · GPT-5.6 Sol</option><option value="anthropic">Claude · Fable 5.1</option><option value="both">Both · independent answers</option></select>
+<label for="prompt">Your prompt</label><textarea id="prompt" rows="6" maxlength="8000" placeholder="What would you like to work on?" required></textarea>
+<label class="check"><input id="include-notes" type="checkbox"> Send saved project notes to the selected provider(s)</label>
+<p class="hint">Select earlier exchanges below to include them. Each model receives only its own complete prior answers. Unselected history stays on this Mac.</p>
+<div class="actions"><span class="hint">8,000 prompt bytes · 32,000 bytes including context · 1,024 output tokens per answer</span><button id="preview" type="button">Review what will be sent</button><button id="send" type="submit" disabled>Send prompt ↗</button></div>
+<details id="context-preview" hidden><summary>Exact text for each selected provider</summary><div id="preview-text"></div></details>
+</form><p class="privacy">Prompts go to the selected provider. Prompts, answers and usage are saved on this Mac’s internal SSD.</p></section>
+<div class="summary"><p id="allowance">Loading usage…</p><button class="secondary" id="refresh">Refresh history</button></div>
+<p id="message" role="status" aria-live="polite"></p>
+<button id="retry" class="secondary" hidden>Retry the saved request safely</button>
+<p id="retry-context" class="hint" hidden></p>
+<section id="history" aria-label="Recent requests"></section>
+<footer>Localhost only · No tools or automatic routing · Costs are USD estimates, not invoices.<br>Unknown usage keeps a conservative reservation against the US$2 prototype allowance.</footer>
+</main></body></html>
